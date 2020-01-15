@@ -15,3 +15,7 @@ class ProductPageLocators():
     NAME_BOOK = (By.CSS_SELECTOR, "div.col-sm-6.product_main > h1")
     NAME_ADD_BOOK = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
