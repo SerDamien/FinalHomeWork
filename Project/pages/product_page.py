@@ -14,3 +14,11 @@ class ProductPage(BasePage):
         assert price, "price not found"
         assert price_bucket == price, f"price_bucket{price_bucket} not equal price {price}"
         assert name_add_book == name_book, "name book not equal name add book"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_not_be_success_message_2(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should disappeared"

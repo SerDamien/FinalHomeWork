@@ -14,3 +14,4 @@ class ProductPageLocators():
     PRICE_BUCKET = (By.CSS_SELECTOR, "#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong")
     NAME_BOOK = (By.CSS_SELECTOR, "div.col-sm-6.product_main > h1")
     NAME_ADD_BOOK = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div")

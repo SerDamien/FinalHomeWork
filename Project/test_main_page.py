@@ -1,3 +1,5 @@
+import time
+
 import pytest
 
 from .pages.base_page import solve_quiz_and_get_code
@@ -59,3 +61,28 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.should_be_add_bucket()
     solve_quiz_and_get_code(page)
     page.should_be_price()
+
+@pytest.mark.n()
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7"
+    page = ProductPage(browser,link)
+    page.open()
+    page.should_be_add_bucket()
+    solve_quiz_and_get_code(page)
+    page.should_not_be_success_message()
+
+@pytest.mark.n()
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.n()
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_add_bucket()
+    solve_quiz_and_get_code(page)
+    page.should_not_be_success_message_2()
