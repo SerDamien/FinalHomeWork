@@ -1,7 +1,7 @@
 import math
-from .locators import BasePageLocators, LoginPageLocators
+from .locators import BasePageLocators
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.common.exceptions import NoAlertPresentException # в начале файла
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 

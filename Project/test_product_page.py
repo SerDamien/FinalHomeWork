@@ -1,5 +1,3 @@
-import time
-
 import pytest
 import faker
 from .pages.base_page import solve_quiz_and_get_code
@@ -9,6 +7,7 @@ from .pages.product_page import *
 
 f=faker.Faker()
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
@@ -20,7 +19,6 @@ f=faker.Faker()
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
 def test_guest_can_add_product_to_basket(browser, link):
-    # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7"
     print(link)
     page = ProductPage(browser, link)
     page.open()
@@ -58,12 +56,14 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = BasketPage(browser, link)
@@ -72,7 +72,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.should_not_be_product_in_basket()
     page.should_text_empty_basket()
 
-@pytest.mark.xnew
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -83,11 +82,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()
         page.register_new_user(email, password)
         page.should_be_authorized_user()
-        time.sleep(3)
         yield
-        # после этого ключевого слова начинается teardown
-        # выполнится после каждого теста в классе
-        # удаляем те данные, которые мы создали
         browser.quit()
 
     def test_user_cant_see_success_message(self, browser):
@@ -96,6 +91,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"
         print(link)
