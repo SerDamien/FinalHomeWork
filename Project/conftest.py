@@ -3,7 +3,7 @@ import pytest
 from selenium import webdriver
 
 
-def pytest_addoption(parser):
+def pytest_addoption(parser): #добавление опций от pytest для запуска браузера на разных языках
     parser.addoption('--browser_name', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
 
@@ -11,7 +11,7 @@ def pytest_addoption(parser):
                      help="Choose language: ru, en, ...")
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="function") #фикстура, предустановка для веб драйвера, и запуска из cmd
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
